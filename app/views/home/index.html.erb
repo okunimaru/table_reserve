@@ -1,0 +1,9 @@
+<h1>テーブルリザーブへようこそ</h1>
+
+<% if current_user %>
+  <p><%= current_user.name %>さん、こんにちは</p>
+  <%= link_to "予約一覧", reservations_path %>
+  <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %>
+<% else %>
+  <%= link_to "ログイン", login_path %>
+<% end %>

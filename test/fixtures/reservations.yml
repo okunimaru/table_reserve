@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  floor: one
+  date: 2026-05-29
+  time: 2026-05-29 07:10:59
+  number_of_people: 1
+  status: MyString
+
+two:
+  user: two
+  floor: two
+  date: 2026-05-29
+  time: 2026-05-29 07:10:59
+  number_of_people: 1
+  status: MyString
