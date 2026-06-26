@@ -1,2 +1,36 @@
-<h1>Reservations#new</h1>
-<p>Find me in app/views/reservations/new.html.erb</p>
+<h1>予約する</h1>
+
+<%= form_with model: @reservation do |f| %>
+  <div>
+    <%= f.label :floor_id, "フロア" %>
+    <%= f.collection_select :floor_id, @floors, :id, :name, prompt: "選択してください" %>
+  </div>
+
+  <div>
+    <%= f.label :date, "日付" %>
+    <%= f.date_field :date %>
+  </div>
+
+  <div>
+    <%= f.label :time, "時間" %>
+    <%= f.time_field :time %>
+  </div>
+
+  <div>
+    <%= f.label :number_of_people, "人数" %>
+    <%= f.number_field :number_of_people, min: 1 %>
+  </div>
+
+  <div>
+    <p>事前オーダー（任意）</p>
+    <% @menus.each do |menu| %>
+      <div>
+        <%= check_box_tag "reservation[menu_ids][]", menu.id %>
+        <%= menu.name %>（<%= menu.price %>円）
+        <%= number_field_tag "reservation[reservation_menus_attributes][][quantity]", 1, min: 1 %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit "予約する" %>
+<% end %>

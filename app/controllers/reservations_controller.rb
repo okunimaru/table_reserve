@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @Reservation = Reservation.new
+    @reservation = Reservation.new
     @floors = Floor.all
     @menus = Menu.all
   end

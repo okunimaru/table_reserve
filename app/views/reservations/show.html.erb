@@ -1,2 +1,18 @@
-<h1>Reservations#show</h1>
-<p>Find me in app/views/reservations/show.html.erb</p>
+<h1>予約詳細</h1>
+
+<p>日付: <%= @reservation.date %></p>
+<p>時間: <%= @reservation.time.strftime("%H:%M") %></p>
+<p>フロア: <%= @reservation.floor.name %></p>
+<p>人数: <%= @reservation.number_of_people %>名</p>
+<p>ステータス: <%= @reservation.status %></p>
+
+<% if @reservation.menus.any? %>
+  <h2>事前オーダー</h2>
+  <ul>
+    <% @reservation.reservation_menus.each do |rm| %>
+      <li><%= rm.menu.name %> × <%= rm.quantity %>個</li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "予約一覧に戻る", reservations_path %>

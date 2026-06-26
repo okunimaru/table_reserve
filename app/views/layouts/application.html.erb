@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "App" %></title>
+    <title><%= content_for(:title) || "TableReserve" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -18,6 +18,29 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to "ホーム", root_path %>
+      <% if current_user %>
+        <% if current_user.role == "admin" %>
+          <%= link_to "予約管理", admin_reservations_path %>
+          <%= link_to "メニュー管理", admin_menus_path %>
+        <% else %>
+          <%= link_to "予約一覧", reservations_path %>
+          <%= link_to "予約する", new_reservation_path %>
+        <% end %>
+        <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "ログイン", login_path %>
+      <% end %>
+    </nav>
+
+    <% if notice %>
+      <p><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

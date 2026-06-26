@@ -3,6 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :floor
   has_many :reservation_menus, dependent: :destroy
   has_many :menus, through: :reservation_menus
+  accepts_nested_attributes_for :reservation_menus
 
   validates :date, presence: true
   validates :time, presence: true
